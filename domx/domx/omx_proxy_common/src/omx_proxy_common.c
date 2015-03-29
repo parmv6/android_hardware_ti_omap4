@@ -1394,6 +1394,7 @@ OMX_ERRORTYPE __PROXY_SetParameter(OMX_IN OMX_HANDLETYPE hComponent,
 			break;
 		}
 #endif
+#ifndef DOMX_TUNA
 		case OMX_TI_IndexUseBufferDescriptor:
 		     ptBufDescParam = (OMX_TI_PARAM_USEBUFFERDESCRIPTOR *) pParamStruct;
 		     if(ptBufDescParam->bEnabled == OMX_TRUE)
@@ -1414,6 +1415,7 @@ OMX_ERRORTYPE __PROXY_SetParameter(OMX_IN OMX_HANDLETYPE hComponent,
 				RPC_SetParameter(pCompPrv->hRemoteComp, nParamIndex, pParamStruct,
 					pLocBufNeedMap, nNumOfLocalBuf, &eCompReturn);
 		     break;
+#endif
 		default:
 		{
 #ifdef USE_ION
@@ -1501,6 +1503,7 @@ OMX_ERRORTYPE __PROXY_GetParameter(OMX_IN OMX_HANDLETYPE hComponent,
 
 	switch((unsigned int)nParamIndex)
 	{
+#ifndef DOMX_TUNA
 		case OMX_TI_IndexUseBufferDescriptor:
 			eRPCError = RPC_GetParameter(pCompPrv->hRemoteComp, nParamIndex, pParamStruct,
 				pLocBufNeedMap, &eCompReturn);
@@ -1512,6 +1515,7 @@ OMX_ERRORTYPE __PROXY_GetParameter(OMX_IN OMX_HANDLETYPE hComponent,
 			     ptBufDescParam->eBufferType = OMX_TI_BufferTypeVirtual2D;
 		     }
 		     break;
+#endif
 
 #ifdef ANDROID_API_MM_OR_LATER
 		case OMX_IndexParamConsumerUsageBits:
