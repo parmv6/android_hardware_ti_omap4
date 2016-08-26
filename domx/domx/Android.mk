@@ -37,6 +37,10 @@ LOCAL_SHARED_LIBRARIES := \
     liblog \
     libcutils
 
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),tuna)
+LOCAL_CFLAGS += -DDOMX_TUNA
+endif
+
 ifeq ($(BOARD_USE_TI_LIBION),true)
 LOCAL_SHARED_LIBRARIES += libion_ti
 LOCAL_CFLAGS += -DUSE_TI_LIBION

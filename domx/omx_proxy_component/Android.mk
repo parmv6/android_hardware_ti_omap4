@@ -153,6 +153,10 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_CFLAGS := $(TI_OMXPROXY_COMMON_CFLAGS)
 
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),tuna)
+LOCAL_CFLAGS += -DDOMX_TUNA
+endif
+
 LOCAL_SRC_FILES := \
 	omx_camera/src/omx_proxy_camera.c \
 	omx_camera/src/proxy_camera_android_glue.c
